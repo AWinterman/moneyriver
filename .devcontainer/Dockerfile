@@ -10,4 +10,9 @@ RUN go install -v github.com/go-delve/delve/cmd/dlv@latest
 RUN go install -v honnef.co/go/tools/cmd/staticcheck@latest 
 RUN go install -v github.com/davidrjenni/reftools/cmd/fillstruct@latest
 
+SHELL ["/bin/bash", "--login", "-c"]
+
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+RUN nvm install 16 && nvm use 16
+
 CMD ["go mod tidy && service ssh restart && sleep infinity"]
